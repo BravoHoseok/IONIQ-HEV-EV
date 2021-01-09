@@ -49,7 +49,7 @@ To solve this problem, I introduced a algorithm by utilizing touch information(p
 <strong>Fig.4) The entire flow of new algorithm</strong>
 <p>
 
-**Fig.4)** shows the entire flow chart of the algorithm. By introducing this solution, the slider touch system can ensure a property of constant sensitivity like **Fig.5)**. Elements of the lookup table have to be measured in advanced by a robot arm machine.
+**Fig.4)** shows the entire flow chart of the algorithm. By introducing this solution, the slider touch system can ensure a property of constant sensitivity, generating variable threshold corresponding to a specific position as shown in **Fig.5)**. Elements of the lookup table have to be measured in advanced by a robot arm machine.
 
 <p align="center">
 <img src="./Img/AEPE_Delta3.jpg"><br>
@@ -58,5 +58,3 @@ To solve this problem, I introduced a algorithm by utilizing touch information(p
 
 ### Result #1
 Kept irregular sensitivities of the slider touch sensor regardless of a quality of it, saving costs spent on changing the slider touch sensor design.<br>
-
----
