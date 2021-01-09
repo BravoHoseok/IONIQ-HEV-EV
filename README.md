@@ -178,13 +178,12 @@ As two microprocessors (32-bit and 8-bit) are applied in our product, I decided 
 the secondary microprocessor in complete car in order to perform projects efficiently in terms on time and costs.
 
 ### Research and Solution #4
-**(Step 1)** Designed the concept of a software update system from an external tool to the target microprocessor
-**(Step 2)** Created FBL (Flash Boot Loader) of the target microprocessor
-**(Step 3)** Implemented the gateway software modules (CAN-SPI, CAN-I2C) to transfer update data from the main
-microprocessor to the target microprocessor
-**(Step 4)** Designed memory field used in Script tool, such as Flash Boot Loader, Application, Validation Check, Variation
-**(Step 5)** Invented Script tools that convert different types of Hex files (Intel, Motorola) to a suitable format and merge them
-**(Step 6)** Developed the external update tool that sends the update file through diagnostic-CAN
+**(Step 1)** Designed the concept of a software update system from an external tool to the target microprocessor<br>
+**(Step 2)** Created FBL (Flash Boot Loader) of the target microprocessor<br>
+**(Step 3)** Implemented the gateway software modules (CAN-SPI, CAN-I2C) to transfer update data from the main microprocessor to the target microprocessor<br>
+**(Step 4)** Designed memory field used in Script tool, such as Flash Boot Loader, Application, Validation Check, Variation<br>
+**(Step 5)** Invented Script tools that convert different types of Hex files (Intel, Motorola) to a suitable format and merge them<br>
+**(Step 6)** Developed the external update tool that sends the update file through diagnostic-CAN<br>
 
 <p align="center">
 <img src="./Img/AEPE_Memory.jpg"><br>
@@ -201,7 +200,6 @@ microprocessor to the target microprocessor
 **Fig.9)** shows the structure of the entire update system. Through 'Script Tool', several Hex files can be changed  Motorola Hex format to Intel Hex format and be merged one Hex file being used in application update. The 32-bit microprocessor can receive the date of the Hex file from the Diagnostic-CAN, and GateWay module will change CAN protocol to SPI protocol format. To communicate between 32-bit microprocessor and 8-bit one, I defined SPI protocol frame used in Flash Boot Loader. The CHG pin is used in this update system to inform whether the 8-bit microprocessor complete works such as erase, write, jump to other sections, checksum. Since a copyright of this update system is reserved in a previous company, I can not disclose detailed information or software code.
 
 ### Result #4
-Saved the time and costs spent on the software update from 15 min per one product to 1 min per one
-product, from $22 per one product to $1.5 per one product respectively
+Saved the time and costs spent on the software update from 15 min per one product to 1 min per one product, from $22 per one product to $1.5 per one product respectively.
 
 ---
