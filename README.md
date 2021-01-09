@@ -201,5 +201,5 @@ the secondary microprocessor in complete car in order to perform projects effici
 
 ### Result #4
 Saved the time and costs spent on the software update from 15 min per one product to 1 min per one product, from $22 per one product to $1.5 per one product respectively.
-
+er
 ---
