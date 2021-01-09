@@ -125,7 +125,7 @@ else<br>
 
 >GetUserPosition(Ratio1, Ratio2, Section)<br>
 {<br>
-&nbsp;&nbsp;&nbsp;resolution = last position value(255) / the number of sensor<br> nodes(3);//85<br>
+&nbsp;&nbsp;&nbsp;resolution = last position value(255) / the number of sensor nodes(3);//85<br>
 &nbsp;&nbsp;&nbsp;sum = Ratio1 + Ratio2;<br>
 &nbsp;&nbsp;&nbsp;mul1 = Ratio1 * resolution;<br>
 &nbsp;&nbsp;&nbsp;mul2 = resolution * Section;<br>
