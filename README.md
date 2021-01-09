@@ -18,13 +18,10 @@ This section demonstrates what was challenging issues, how to research them, and
 When implementing a tap function by using slide touch sensors that are composed of interlaced patterned two nodes, irregular sensitivity was caused in the entire area of slide touch sensors, for the slide touch sensors were designed with a small size, erratic patterns in the connection, and the sensors were located under a concave cover panel. To ensure the constant sensitivity of slide touch sensors, I introduced a software algorithm, variable threshold using interpolation
 
 ### Research and Solution #1
-**(Step 1)** Collected touch information such as positions, sensitivity values through SPI communication from touch
-microprocessor
-**(Step 2)** Made a two-dimensional lookup table with 30 elements that represents that X-axis presents a position value and
-the Y-axis demonstrates a sensitivity value corresponding to the X-axis position value
-**(Step 3)** Calculated a threshold value (80 % of max sensitivity value) corresponding to a new position value from the
-lookup table by using a two-dimensional interpolation
-**(Step 4)** Decided the slide touch’s on-off state from sensitivity values and the calculated threshold
+**(Step 1)** Collected touch information such as positions, sensitivity values through SPI communication from touch microprocessor<br>
+**(Step 2)** Made a two-dimensional lookup table with 30 elements that represents that X-axis presents a position value and the Y-axis demonstrates a sensitivity value corresponding to the X-axis position value<br>
+**(Step 3)** Calculated a threshold value (80 % of max sensitivity value) corresponding to a new position value from the lookup table by using a two-dimensional interpolation<br>
+**(Step 4)** Decided the slide touch’s on-off state from sensitivity values and the calculated threshold<br>
 
 <p align="center">
 <img src="./Img/AEPE_Sensor.jpg"><br>
