@@ -147,4 +147,28 @@ Implemented reliable an algorithm calculating positions. Also, since I reduced t
 
 ---
 
-### 
+### Challenge #3 - Designing SPI communication driver between two heterogeneous microprocessors
+To minimize the number of ports used in exchanging data between two microprocessors, I adopted the SPI communication.
+When developing it, the failure of the SPI communication was caused by the different operation speed of the two microprocessors: 32-bit RH850-F1K (Renesas) and 8-bit ATtiny1616 (Microchip). If the 32-bit microprocessor generates next clock to receive next date before the 8-bit microprocessor complete writing valid data to its data buffer, the 32-bit microprocessor is going to receive previous data or garbage data from the 8-bit microprocessor's data buffer.
+
+### Research and Solution #2
+**(Step 1)** Designed a concept of the SPI by applying the ready port that indicates the state of the 8-bit microprocessor
+as an interrupt signal
+**(Step 2)** Designed the necessary elements used in the SPI driver module: data structure, state machine, logic flow
+chart, module dependency
+**(Step 3)** Defined the SPI communication protocol: command, data length, identification, receive, send
+**(Step 4)** Programmed the SPI driver module of each microprocessor according to design concepts
+**(Step 5)** Integrated the programmed modules into the real-time OS-based platform and the touch platform
+respectively
+
+<p align="center">
+<img src="./Img/AEPE_SPI.jpg"><br>
+<strong>Fig.7) the block diagram of SPI communication</strong>
+<p>
+
+**Fig.7)** shows the structure of the SPI communication block diagram. By recognizing a ready port as an 'Interrupt Port' in the 32-bit microprocessor can confirm whether 8bit-microprocessor completed writing data it's data buffer or not. I2C module of MCU provides 'Clock Stretch function' that alerts the state of data buffers to other MCU. However, unlike I2C, SPI communication does not have this function. To design SPI communication driver module, I applied a ready port concept like 'Clock Stretch' to this SPI driver software module. Since a copyright of this driver module is reserved in a previous company, I can not unveil detailed information or software code.
+
+### Result #3
+Built know-how in designing the SPI communication.
+
+---
