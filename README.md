@@ -33,12 +33,12 @@ lookup table by using a two-dimensional interpolation
 
 <p align="center">
 <img src="./Img/AEPE_Delta1.jpg"><br>
-<strong>Fig 2) Ideal sensitivity sum of each segment
+<strong>Fig 2) Ideal sensitivity sum of each segment, when touching the slider touch sensor
 
 **Fig 1)** shows the pattern of slide (wheel) touch sensor. When implementing 'Tap' gesture function by utilizing the slider touch sensor, the sensitivity sum of each sensor segment will be used to detect finger's touch state. In order to implement 'Tap' gesture function, the entire slider touch sensor should have a property of constant sensitivity regardless of the position of 'Tap' gesture on the slider touch sensor like **Fig 2)**. If the slider touch sensor does not show this property, a user definitely will feel the irregular sensitivity in the slider touch system.
 
 <p align="center">
 <img src="./Img/AEPE_Delta2.jpg"><br>
-<strong>Fig 3) Irregular sensitivity sum of each segment
+<strong>Fig 3) Irregular sensitivity sum of each segment, when touching the slider touch sensor
 
 However, as shown in **Fig 3)**, it is different in the real world. The reason is that the slide touch sensors were designed with a small size, erratic patterns between the connection, and the sensors were located under a concave cover panel.
