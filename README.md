@@ -74,7 +74,7 @@ When a customer use a microprocessor of suppliers, they normally provide applica
 <strong>Fig.6) the design pattern of slide(wheel touch sensors</strong>
 <p>
 
-**Fig.6)** shows the sensitivity fluctuation of each segment on the wheel touch sensor, when moving a finger as clock wise. By applying this property, we can calculate the position value as below pseudocode. *_delta means sensitivity of each segment.
+**Fig.6)** shows the sensitivity fluctuation of each segment on the wheel touch sensor, when moving a finger as clock wise and counter clock wise. By applying this property, we can calculate the position value as shown position value graph. The *_delta below pseudocode means sensitivity of each segment.
 
 >if((ch0_delta >= ch1_delta) && (ch0_delta >= ch2_delta))<br>
 &nbsp;{<br>
