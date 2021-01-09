@@ -37,7 +37,7 @@ lookup table by using a two-dimensional interpolation
 <img src="./Img/AEPE_Delta1.jpg"><br>
 <strong>Fig.2) Ideal sensitivity sum of each segment, when touching the slider touch sensor
 
-However, as shown in **Fig.3)**, it is different in the real world. The reason is that the slide touch sensors were designed with a small size, erratic patterns between the connection, and the sensors were located under a concave cover panel.
+However, it is different in the real world as shown in **Fig.3)**. The reason is that the slide touch sensors were designed with a small size, erratic patterns between the connection, and the sensors were located under a concave cover panel.
 
 <p align="center">
 <img src="./Img/AEPE_Delta2.jpg"><br>
