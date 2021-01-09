@@ -57,4 +57,6 @@ To solve this problem, I introduced a algorithm by utilizing touch information(p
 <p>
 
 ### Result #1
-Kept irregular sensitivities of the slider touch sensor regardless of a quality of it, saving costs spent on changing the slider touch sensor design.<br>
+Kept irregular sensitivities of the slider touch sensor constant, regardless of a quality of it, thus saving costs spent on changing the slider touch sensor design.<br>
+
+---
