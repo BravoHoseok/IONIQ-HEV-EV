@@ -166,9 +166,42 @@ respectively
 <strong>Fig.7) the block diagram of SPI communication</strong>
 <p>
 
-**Fig.7)** shows the structure of the SPI communication block diagram. By recognizing a ready port as an 'Interrupt Port' in the 32-bit microprocessor can confirm whether 8bit-microprocessor completed writing data it's data buffer or not. I2C module of MCU provides 'Clock Stretch function' that alerts the state of data buffers to other MCU. However, unlike I2C, SPI communication does not have this function. To design SPI communication driver module, I applied a ready port concept like 'Clock Stretch' to this SPI driver software module. Since a copyright of this driver module is reserved in a previous company, I can not unveil detailed information or software code.
+**Fig.7)** shows the structure of the SPI communication block diagram. By recognizing a ready port as an 'Interrupt Port' in the 32-bit microprocessor can confirm whether 8bit-microprocessor completed writing data it's data buffer or not. I2C module of MCU provides 'Clock Stretch function' that alerts the state of data buffers to other MCU. However, unlike I2C, SPI communication does not have this function. To design SPI communication driver module, I applied a ready port concept like 'Clock Stretch' to this SPI driver software module. Since a copyright of this driver module is reserved in a previous company, I can not disclose detailed information or software code.
 
 ### Result #3
 Built know-how in designing the SPI communication.
+
+---
+
+### Challenge #4 - Creating software update system for a secondary microprocessor in a complete car
+As two microprocessors (32-bit and 8-bit) are applied in our product, I decided to provide the software update function of
+the secondary microprocessor in complete car in order to perform projects efficiently in terms on time and costs.
+
+### Research and Solution #4
+**(Step 1)** Designed the concept of a software update system from an external tool to the target microprocessor
+**(Step 2)** Created FBL (Flash Boot Loader) of the target microprocessor
+**(Step 3)** Implemented the gateway software modules (CAN-SPI, CAN-I2C) to transfer update data from the main
+microprocessor to the target microprocessor
+**(Step 4)** Designed memory field used in Script tool, such as Flash Boot Loader, Application, Validation Check, Variation
+**(Step 5)** Invented Script tools that convert different types of Hex files (Intel, Motorola) to a suitable format and merge them
+**(Step 6)** Developed the external update tool that sends the update file through diagnostic-CAN
+
+<p align="center">
+<img src="./Img/AEPE_Memory.jpg"><br>
+<strong>Fig.8) the structure of the 8-bit microprocessor memory</strong>
+<p>
+
+**Fig.8)** shows the structure of the 8-bit microprocessor memory. Flash Boot Loader(FBL) is located in BOOT section, and FBL will erase and rewrite application code and data section.
+
+<p align="center">
+<img src="./Img/AEPE_Update.jpg"><br>
+<strong>Fig.9) the structure of the entire update system</strong>
+<p>
+
+**Fig.9)** shows the structure of the entire update system. Through 'Script Tool', several Hex files can be changed  Motorola Hex format to Intel Hex format and be merged one Hex file being used in application update. The 32-bit microprocessor can receive the date of the Hex file from the Diagnostic-CAN, and GateWay module will change CAN protocol to SPI protocol format. To communicate between 32-bit microprocessor and 8-bit one, I defined SPI protocol frame used in Flash Boot Loader. The CHG pin is used in this update system to inform whether the 8-bit microprocessor complete works such as erase, write, jump to other sections, checksum. Since a copyright of this update system is reserved in a previous company, I can not disclose detailed information or software code.
+
+### Result #4
+Saved the time and costs spent on the software update from 15 min per one product to 1 min per one
+product, from $22 per one product to $1.5 per one product respectively
 
 ---
