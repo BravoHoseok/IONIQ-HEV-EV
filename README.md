@@ -129,7 +129,7 @@ else<br>
 &nbsp;&nbsp;&nbsp;sum = Ratio1 + Ratio2;<br>
 &nbsp;&nbsp;&nbsp;mul1 = Ratio1 * resolution;<br>
 &nbsp;&nbsp;&nbsp;mul2 = resolution * Section;<br>
-&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;<br>
 &nbsp;&nbsp;&nbsp;if(Section)<br>
 &nbsp;&nbsp;&nbsp;{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result = (mul2 + (mul1/sum));<br>
@@ -141,3 +141,6 @@ else<br>
 &nbsp;&nbsp;&nbsp;	
 &nbsp;&nbsp;&nbsp;retrun result;<br>
 }<br>
+
+### Result #2
+Kept irregular sensitivities of the slider touch sensor regardless of a quality of it, saving costs spent on changing the slider touch sensor design.
