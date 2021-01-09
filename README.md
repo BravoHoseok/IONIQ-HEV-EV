@@ -52,5 +52,5 @@ To solve this problem, I introduced a algorithm by utilizing touch information(p
 **Fig.4)** shows the entire flow chart of the algorithm. By introducing this solution, the slider touch system can ensure a property of constant sensitivity like **Fig.5)**. Elements of the lookup table have to be measured in advanced by a robot arm machine.
 
 <p align="center">
-<img src="./Img/AEPE_Flow.jpg"><br>
-<strong>Fig.5) Regular sensitivity, when touching the slider touch sensor
+<img src="./Img/AEPE_Delta3.jpg"><br>
+<strong>Fig.5) Regular sensitivity, when touching the slider touch sensor regardless of any position
