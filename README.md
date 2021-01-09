@@ -61,7 +61,7 @@ Kept irregular sensitivities of the slider touch sensor constant, regardless of 
 
 ---
 
-### Challenge #2 - Developing a algorithm extracting position in the wheel touch sensor that is composed of interlaced patterned 3 nodes
+### Challenge #2 - Developing an algorithm extracting position in the wheel touch sensor that is composed of interlaced patterned 3 nodes
 When a customer use a microprocessor of suppliers, they normally provide application interface as a library. Likewise, we also were provided interface function calculating positions of a moving touch object on the wheel touch sensor. However, it was evident that this library would make malfunctions, for the supplier programmed the library in the situation where touch sensors and PCB were ideally designed. Actually, since we had many limitations such as small sensors and poor PCB design, the library calculating positions of touch object did not offer reliable outcome values. To resolve this problem, I programmed the new algorithm calculating positions.
 
 ### Research and Solution #2
@@ -144,3 +144,6 @@ else<br>
 
 ### Result #2
 Implemented reliable an algorithm calculating positions. Also, since I reduced the range of position jitter by developing filter algorithm, this algorithm calculating positions can be used in the wheel touch sensor that is made of just 3 nodes without adding extra touch sensor nodes, saving costs spent on the wheel touch sensor design.
+
+---
+
