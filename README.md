@@ -151,15 +151,12 @@ Implemented reliable an algorithm calculating positions. Also, since I reduced t
 To minimize the number of ports used in exchanging data between two microprocessors, I adopted the SPI communication.
 When developing it, the failure of the SPI communication was caused by the different operation speed of the two microprocessors: 32-bit RH850-F1K (Renesas) and 8-bit ATtiny1616 (Microchip). If the 32-bit microprocessor generates next clock to receive next date before the 8-bit microprocessor complete writing valid data to its data buffer, the 32-bit microprocessor is going to receive previous data or garbage data from the 8-bit microprocessor's data buffer.
 
-### Research and Solution #2
-**(Step 1)** Designed a concept of the SPI by applying the ready port that indicates the state of the 8-bit microprocessor
-as an interrupt signal
-**(Step 2)** Designed the necessary elements used in the SPI driver module: data structure, state machine, logic flow
-chart, module dependency
-**(Step 3)** Defined the SPI communication protocol: command, data length, identification, receive, send
-**(Step 4)** Programmed the SPI driver module of each microprocessor according to design concepts
-**(Step 5)** Integrated the programmed modules into the real-time OS-based platform and the touch platform
-respectively
+### Research and Solution #3
+**(Step 1)** Designed a concept of the SPI by applying the ready port that indicates the state of the 8-bit microprocessor as an interrupt signal<br>
+**(Step 2)** Designed the necessary elements used in the SPI driver module: data structure, state machine, logic flow chart, module dependency<br>
+**(Step 3)** Defined the SPI communication protocol: command, data length, identification, receive, send<br>
+**(Step 4)** Programmed the SPI driver module of each microprocessor according to design concepts<br>
+**(Step 5)** Integrated the programmed modules into the SW platform and the touch platform respectively<br>
 
 <p align="center">
 <img src="./Img/AEPE_SPI.jpg"><br>
