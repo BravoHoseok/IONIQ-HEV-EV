@@ -117,6 +117,27 @@ else<br>
 &nbsp;&nbsp;&nbsp;else // S4<br>
 &nbsp;&nbsp;&nbsp;{<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ch1_Ratio = Ch1_delta / (Ch1_delta + CH2_delta + 1);<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ch2_Ratio = Ch2_delta / (Ch1_delta + Ch22_delta + 1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ch2_Ratio = Ch2_delta / (Ch1_delta + Ch2_delta + 1);<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GetUserPosition(Ch2_Ratio, Ch1_Ratio, 1);//1 means S3(Section3), S4(Section4)<br>
+&nbsp;&nbsp;&nbsp;}<br>
+}<br>
+
+
+>GetUserPosition(Ratio1, Ratio2, Section)<br>
+{<br>
+&nbsp;&nbsp;&nbsp;resolution = last position value(255) / the number of sensor<br> nodes(3);//85<br>
+&nbsp;&nbsp;&nbsp;sum = Ratio1 + Ratio2;<br>
+&nbsp;&nbsp;&nbsp;mul1 = Ratio1 * resolution;<br>
+&nbsp;&nbsp;&nbsp;mul2 = resolution * Section;<br>
+&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;if(Section)<br>
+&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result = (mul2 + (mul1/sum));<br>
+&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;else<br>
+&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; result = (mul1/sum);<br>
+&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;	
+&nbsp;&nbsp;&nbsp;retrun result;<br>
 }<br>
