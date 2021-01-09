@@ -60,3 +60,63 @@ To solve this problem, I introduced a algorithm by utilizing touch information(p
 Kept irregular sensitivities of the slider touch sensor constant, regardless of a quality of it, thus saving costs spent on changing the slider touch sensor design.<br>
 
 ---
+
+### Challenge #2 - Developing a algorithm extracting position in the wheel touch sensor that is composed of interlaced patterned 3 nodes
+When a customer use a microprocessor of suppliers, they normally provide application interface as a library. Likewise, we also were provided interface function calculating positions of a moving touch object on the wheel touch sensor. However, it was evident that this library would make malfunctions, for the supplier programmed the library in the situation where touch sensors and PCB were ideally designed. Actually, since we had many limitations such as small sensors and poor PCB design, the library calculating positions of touch object did not offer reliable outcome values. To resolve this problem, I programmed the new algorithm calculating positions.
+
+### Research and Solution #2
+**(Step 1)** Devised an algorithm calculating positions by utilizing the amount of fluctuation of each segment on the wheel touch sensor<br>
+**(Step 2)** Programmed this algorithm, integrating it into a touch software platform<br>
+**(Step 3)** Verified this algorithm with many test cases<br>
+
+<p align="center">
+<img src="./Img/AEPE_PosExtract.jpg"><br>
+<strong>Fig.6) the design pattern of slide(wheel touch sensors</strong>
+<p>
+
+**Fig.6)** shows the sensitivity fluctuation of each segment on the wheel touch sensor, when moving a finger as clock wise. By applying this property, we can calculate the position value as below pseudocode.
+
+>if((ch0_delta >= ch1_delta) && (ch0_delta >= ch2_delta))<br>
+&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;if(ch1_delta > ch2_delta) // S1<br>
+&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ch0_Ratio = ch0_delta / (ch0_delta + ch2_delta + 1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ch2_Ratio = ch2_delta / (ch0_delta + ch2_delta + 1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GetUserPosition(ch0_Ratio, ch2_Ratio, 0);//0 means S1(Section1), S2(Section2)<br>
+&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;else // S6<br>
+&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;seg1_Ratio = seg1_delta / (seg1_delta + seg2_delta + 1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;seg2_Ratio = seg2_delta / (seg1_delta + seg2_delta + 1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GetUserPosition(seg1_Ratio, seg2_Ratio, 2);//2 means S5(Section5), S6(Section6)<br>
+&nbsp;&nbsp;&nbsp;}<br>
+}<br>
+else if((ch1_delta >= ch2_delta) && (ch1_delta >= ch0_delta))<br>
+&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;if(ch0_delta > ch2_delta) // S2<br>
+&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ch1_Ratio = ch1_delta / (ch1_delta + ch0_delta + 1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ch0_Ratio = ch0_delta / (ch1_delta + ch0_delta + 1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GetUserPosition(ch1_Ratio, ch0_Ratio, 0);//0 means S1(Section1), S2(Section2)<br>
+&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;else // S3<br>
+&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ch1_Ratio = Ch1_delta / (Ch1_delta + CH2_delta + 1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ch2_Ratio = Ch2_delta / (Ch1_delta + Ch22_delta + 1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GetUserPosition(Ch2_Ratio, Ch1_Ratio, 1);//1 means S3(Section3), S4(Section4)<br>
+&nbsp;&nbsp;&nbsp;}<br>
+}<br>
+else<br>
+{<br>
+&nbsp;&nbsp;&nbsp;if(ch0_delta > ch1_delta) // S5<br>
+&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ch1_Ratio = ch2_delta / (ch2_delta + ch0_delta + 1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ch0_Ratio = ch0_delta / (ch2_delta + ch0_delta + 1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GetUserPosition(ch0_Ratio, ch2_Ratio, 2);//2 means S0(Section0), S6(Section6)<br>
+&nbsp;&nbsp;&nbsp;}<br>
+&nbsp;&nbsp;&nbsp;else // S4<br>
+&nbsp;&nbsp;&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ch1_Ratio = Ch1_delta / (Ch1_delta + CH2_delta + 1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ch2_Ratio = Ch2_delta / (Ch1_delta + Ch22_delta + 1);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GetUserPosition(Ch2_Ratio, Ch1_Ratio, 1);//1 means S3(Section3), S4(Section4)<br>
+}<br>
