@@ -37,8 +37,20 @@ lookup table by using a two-dimensional interpolation
 <img src="./Img/AEPE_Delta1.jpg"><br>
 <strong>Fig.2) Ideal sensitivity sum of each segment, when touching the slider touch sensor
 
-However, it is different in the real world as shown in**Fig.3)**. The reason is that the slide touch sensors were designed with a small size, erratic patterns between the connection, and the sensors were located under a concave cover panel.
+However, as shown in **Fig.3)**, it is different in the real world. The reason is that the slide touch sensors were designed with a small size, erratic patterns between the connection, and the sensors were located under a concave cover panel.
 
 <p align="center">
 <img src="./Img/AEPE_Delta2.jpg"><br>
 <strong>Fig.3) Irregular sensitivity sum of each segment, when touching the slider touch sensor
+
+To solve this problem, I introduced a algorithm by utilizing touch information(position, sensitivity value), lookup tables, and 2D interpolation.
+
+<p align="center">
+<img src="./Img/AEPE_Flow.jpg"><br>
+<strong>Fig.4) The entire flow of new algorithm
+
+**Fig.4)** shows the entire flow chart of the algorithm. By introducing this solution, the slider touch system can ensure a property of constant sensitivity like **Fig.5)**. Elements of the lookup table have to be measured in advanced by a robot arm machine.
+
+<p align="center">
+<img src="./Img/AEPE_Flow.jpg"><br>
+<strong>Fig.5) Regular sensitivity, when touching the slider touch sensor
