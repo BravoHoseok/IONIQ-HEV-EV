@@ -13,7 +13,6 @@
 ## 3. Challenging issues / Research and Solution / Result
 This section demonstrates what was challenging issues, how to research them, and how to solve them
 
----
 ### Challenge #1 - Ameliorating the non-linear sensitivity of slide touch sensors by devising software algorithms
 When implementing a tap function by using slide touch sensors that are composed of interlaced patterned two nodes, irregular sensitivity was caused in the entire area of slide touch sensors, for the slide touch sensors were designed with a small size, erratic patterns in the connection, and the sensors were located under a concave cover panel. To ensure the constant sensitivity of slide touch sensors, I introduced a software algorithm, variable threshold using interpolation
 
