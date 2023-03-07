@@ -1,7 +1,7 @@
 # IONIQ HEV/EV(AE PE/ AEEV PE)
 
 ## 1. Project Overview
-- This project item is made of 2 parts: HVAC controller and 0D & 1D touch system
+- This project has 2 parts: HVAC controller and 0D & 1D touch system
 - I was in charge of the entire software development of the touch system and application
 
 ## 2. Development Environment
@@ -10,16 +10,16 @@
 -  V850 32-bit Microprocessor | ATtiny 1616 8-bit microprocessor 2ea
 -  Git, Jira, Script Tool
 
-## 3. Challenging issues / Research and Solution / Result
+## 3. Challenging issues / Approach and Solution / Result
 This section demonstrates what was challenging issues, how to research them, and how to solve them
 
 ### Challenge #1 - Ameliorating the non-linear sensitivity of slide touch sensors by devising software algorithms
-When implementing a tap function by using slide touch sensors that are composed of interlaced patterned two nodes, irregular sensitivity was caused in the entire area of slide touch sensors, for the slide touch sensors were designed with a small size, erratic patterns in the connection, and the sensors were located under a concave cover panel. To ensure the constant sensitivity of slide touch sensors, I introduced a software algorithm, variable threshold using interpolation
+When implementing a tap function by using slide touch sensors that are composed of interlaced patterned two nodes, irregular sensitivity was caused in the entire area of slide touch sensors, for the slide touch sensors were designed with a small size, erratic patterns in the connection, and the sensors were located under a concave cover panel. To ensure the constant sensitivity of slide touch sensors, I introduced the software algorithm, variable threshold using interpolation
 
-### Research and Solution #1
-**(Step 1)** Collected touch information such as positions, sensitivity values through SPI communication from touch microprocessor<br>
-**(Step 2)** Made a two-dimensional lookup table with 30 elements that represents that X-axis presents a position value and the Y-axis demonstrates a sensitivity value corresponding to the X-axis position value<br>
-**(Step 3)** Calculated a threshold value (80 % of max sensitivity value) corresponding to a new position value from the lookup table by using a two-dimensional interpolation<br>
+### Approach and Solution #1
+**(Step 1)** Collected touch information (i.e., coordinates, sensitivity) through SPI communication from touch microprocessor<br>
+**(Step 2)** Made a two-dimensional lookup table having 30 elements that represents that X-axis is a coordinate and the Y-axis is a sensitivity value corresponding to the the coordinate of X-axis<br>
+**(Step 3)** Calculated a threshold value (80 % of maximum sensitivity value) corresponding to a new position value from the lookup table by using a two-dimensional interpolation<br>
 **(Step 4)** Decided the slide touch’s on-off state from sensitivity values and the calculated threshold<br>
 
 <p align="center">
@@ -27,7 +27,7 @@ When implementing a tap function by using slide touch sensors that are composed 
 <strong>Fig.1) the design pattern of slide(wheel touch sensors</strong>
 <p>
 
-**Fig.1)** shows the pattern of slide (wheel) touch sensor. When implementing 'Tap' gesture function by utilizing the slider touch sensor, the sensitivity sum of each sensor segment will be used to detect finger's touch state. In order to implement 'Tap' gesture function, the entire slider touch sensor should have a property of constant sensitivity regardless of the position of 'Tap' gesture on the slider touch sensor like **Fig.2)**. If the slider touch sensor does not show this property, a user definitely will feel the irregular sensitivity in the slider touch system.
+**Fig.1)** shows the pattern of slide (wheel) touch sensor. When implementing 'Tap' gesture function by utilizing the slider touch sensor, the sensitivity sum of each sensor segment will be used to detect finger's touch state (touched or non-touched). In order to implement 'Tap' gesture function, the entire slider touch sensor should have the constant sensitivity regardless of the position of 'Tap' gesture on the slider touch sensor like **Fig.2)**. If the slider touch sensor does not show this consistency, a user definitely will feel the irregular sensitivity in the touch system.
 
 <p align="center">
 <img src="./Img/AEPE_Delta1.jpg"><br>
@@ -41,14 +41,14 @@ However, as shown in **Fig.3)**, it is different in the real world. The reason i
 <strong>Fig.3) Irregular sensitivity sum of each segment, when touching the slider touch sensor</strong>
 <p>
 
-To solve this problem, I introduced a algorithm by utilizing touch information(position, sensitivity value), lookup tables, and 2D interpolation.
+To solve this problem, I introduced an algorithm by utilizing touch information(coordinates, sensitivity), lookup tables, and 2D interpolation.
 
 <p align="center">
 <img src="./Img/AEPE_Flow.jpg"><br>
 <strong>Fig.4) The entire flow of new algorithm</strong>
 <p>
 
-**Fig.4)** shows the entire flow chart of the algorithm. By introducing this solution, the slider touch system can ensure a property of constant sensitivity, generating variable threshold corresponding to a specific position as shown in **Fig.5)**. Elements of the lookup table have to be measured in advanced by a robot arm machine.
+**Fig.4)** shows the entire flow chart of the algorithm. By introducing this solution, the slider touch system can ensure the constant sensitivity, generating variable threshold corresponding to a specific position as shown in **Fig.5)**. Elements of the lookup table have to be measured in advanced by a robot arm machine.
 
 <p align="center">
 <img src="./Img/AEPE_Delta3.jpg"><br>
@@ -56,24 +56,24 @@ To solve this problem, I introduced a algorithm by utilizing touch information(p
 <p>
 
 ### Result #1
-Kept irregular sensitivities of the slider touch sensor constant, regardless of a quality of it, thus saving costs spent on changing the slider touch sensor design.<br>
+Kept irregular sensitivities of the slider touch sensor constant, regardless of the quality of it, thus saving costs spent on changing the slider touch sensor design.<br>
 
 ---
 
 ### Challenge #2 - Developing an algorithm extracting position in the wheel touch sensor that is composed of interlaced patterned 3 nodes
-When a customer use a microprocessor of suppliers, they normally provide application interface as a library. Likewise, we also were provided interface function calculating positions of a moving touch object on the wheel touch sensor. However, it was evident that this library would make malfunctions, for the supplier programmed the library in the situation where touch sensors and PCB were ideally designed. Actually, since we had many limitations such as small sensors and poor PCB design, the library calculating positions of touch object did not offer reliable outcome values. To resolve this problem, I programmed the new algorithm calculating positions.
+When using microprocessors of suppliers, they normally provide application interface as a library. Likewise, we also were provided interface software calculating positions of a moving touch object on the wheel touch sensor. However, it was evident that this library would make malfunctions, for the supplier programmed the library in the situation where touch sensors and PCB were ideally designed. Actually, since we had many limitations such as small sensors and poor PCB layout, the library calculating positions of touch object did not provide reliable outcome. To resolve this problem, I devised the new algorithm calculating positions.
 
-### Research and Solution #2
-**(Step 1)** Devised an algorithm calculating positions by utilizing the amount of fluctuation of each segment on the wheel touch sensor<br>
+### Approach and Solution #2
+**(Step 1)** Implemented an algorithm calculating positions by utilizing the sensitivity ratio of each segment on the wheel touch sensor<br>
 **(Step 2)** Programmed this algorithm, integrating it into a touch software platform<br>
-**(Step 3)** Verified this algorithm with many test cases<br>
+**(Step 3)** Verified the algorithm with tons of test cases<br>
 
 <p align="center">
 <img src="./Img/AEPE_PosExtract.jpg"><br>
-<strong>Fig.6) the design pattern of slide(wheel touch sensors</strong>
+<strong>Fig.6) the design pattern of slide (wheel) touch sensors</strong>
 <p>
 
-**Fig.6)** shows the sensitivity fluctuation of each segment on the wheel touch sensor, when moving a finger as clock wise and counter clock wise. By applying this property, we can calculate the position value as shown position value graph. The *_delta below pseudocode means sensitivity of each segment.
+**Fig.6)** shows the sensitivity of each segment on the wheel touch sensor, when moving a finger to clock wise and counter clock wise. By applying this pattern, we can calculate the coordinates as shown position value graph. The *_delta in the pseudocode below means the sensitivity of each segment.
 
 >if((ch0_delta >= ch1_delta) && (ch0_delta >= ch2_delta))<br>
 &nbsp;{<br>
@@ -142,19 +142,19 @@ else<br>
 }<br>
 
 ### Result #2
-Implemented reliable an algorithm calculating positions. Also, since I reduced the range of position jitter by developing filter algorithm, this algorithm calculating positions can be used in the wheel touch sensor that is made of just 3 nodes without adding extra touch sensor nodes, saving costs spent on the wheel touch sensor design.
+Implemented the reliable algorithm calculating coordinates. Also, since I reduced the range of position jitter by implementing filter algorithms, this algorithm can be used in the wheel touch sensors that is made of just 3 nodes without adding extra touch sensor nodes, saving costs spent on the wheel touch sensor design.
 
 ---
 
-### Challenge #3 - Designing SPI communication driver between two heterogeneous microprocessors
-To minimize the number of ports used in exchanging data between two microprocessors, I adopted the SPI communication.
-When developing it, the failure of the SPI communication was caused by the different operation speed of the two microprocessors: 32-bit RH850-F1K (Renesas) and 8-bit ATtiny1616 (Microchip). If the 32-bit microprocessor generates next clock to receive next date before the 8-bit microprocessor complete writing valid data to its data buffer, the 32-bit microprocessor is going to receive previous data or garbage data from the 8-bit microprocessor's data buffer.
+### Challenge #3 - Designing SPI driver between two heterogeneous microprocessors
+To minimize the number of ports used in exchanging data between two microprocessors, we adopted the SPI communication.
+When developing SPI driver, the communication failure was caused by the different operation speed of the two microprocessors: 32-bit RH850-F1K (Renesas) and 8-bit ATtiny1616 (Microchip). If the 32-bit microprocessor generates next clock to receive next date before the 8-bit microprocessor complete writing valid data to its data buffer, the 32-bit microprocessor is going to receive previous data or garbage data from the 8-bit microprocessor's data buffer.
 
-### Research and Solution #3
-**(Step 1)** Designed a concept of the SPI by applying the ready port that indicates the state of the 8-bit microprocessor as an interrupt signal<br>
+### Approach and Solution #3
+**(Step 1)** Designed the concept of SPI driver by applying the ready port that indicates the state of the 8-bit microprocessor as an interrupt signal<br>
 **(Step 2)** Designed the necessary elements used in the SPI driver module: data structure, state machine, logic flow chart, module dependency<br>
-**(Step 3)** Defined the SPI communication protocol: command, data length, identification, receive, send<br>
-**(Step 4)** Programmed the SPI driver module of each microprocessor according to design concepts<br>
+**(Step 3)** Defined the SPI communication protocol: command, data length, identification, receive, send, acknowledge<br>
+**(Step 4)** Programmed the SPI driver of two microprocessors according to the design concepts<br>
 **(Step 5)** Integrated the programmed modules into the SW platform and the touch platform respectively<br>
 
 <p align="center">
@@ -162,7 +162,7 @@ When developing it, the failure of the SPI communication was caused by the diffe
 <strong>Fig.7) the block diagram of SPI communication</strong>
 <p>
 
-**Fig.7)** shows the structure of the SPI communication block diagram. By recognizing a ready port as an 'Interrupt Port' in the 32-bit microprocessor can confirm whether 8bit-microprocessor completed writing data it's data buffer or not. I2C module of MCU provides 'Clock Stretch function' that alerts the state of data buffers to other MCU. However, unlike I2C, SPI communication does not have this function. To design SPI communication driver module, I applied a ready port concept like 'Clock Stretch' to this SPI driver software module. Since a copyright of this driver module is reserved in a previous company, I can not disclose detailed information or software code.
+**Fig.7)** shows the structure of the SPI communication block diagram. By recognizing a ready port as an 'Interrupt Port', the 32-bit microprocessor can confirm whether 8bit-microprocessor completed writing data it's data buffer or not. Normally, I2C hardware component provides 'Clock Stretch function' that alerts the state of data buffers to a master MCU. However, unlike I2C, SPI does not have this function. To design SPI communication driver module, I applied a ready port concept like 'Clock Stretch' to this SPI driver.
 
 ### Result #3
 Built know-how in designing the SPI communication.
@@ -174,9 +174,9 @@ As two microprocessors (32-bit and 8-bit) are applied in our product, I decided 
 the secondary microprocessor in complete car in order to perform projects efficiently in terms on time and costs.
 
 ### Research and Solution #4
-**(Step 1)** Designed the concept of a software update system from an external tool to the target microprocessor<br>
-**(Step 2)** Created FBL (Flash Boot Loader) of the target microprocessor<br>
-**(Step 3)** Implemented the gateway software modules (CAN-SPI, CAN-I2C) to transfer update data from the main microprocessor to the target microprocessor<br>
+**(Step 1)** Designed the concept of the software update system from an external tool to the target microprocessor<br>
+**(Step 2)** Developed FBL (Flash Boot Loader) of the target microprocessor<br>
+**(Step 3)** Implemented the gateway module (CAN-SPI, CAN-I2C) to transfer binary data from the main microprocessor to the target microprocessor<br>
 **(Step 4)** Designed memory field used in Script tool, such as Flash Boot Loader, Application, Validation Check, Variation<br>
 **(Step 5)** Invented Script tools that convert different types of Hex files (Intel, Motorola) to a suitable format and merge them<br>
 **(Step 6)** Developed the external update tool that sends the update file through diagnostic-CAN<br>
@@ -193,7 +193,7 @@ the secondary microprocessor in complete car in order to perform projects effici
 <strong>Fig.9) the structure of the entire update system</strong>
 <p>
 
-**Fig.9)** shows the structure of the entire update system. Through 'Script Tool', several Hex files can be changed  Motorola Hex format to Intel Hex format and be merged one Hex file being used in application update. The 32-bit microprocessor can receive the date of the Hex file from the Diagnostic-CAN, and GateWay module will change CAN protocol to SPI protocol format. To communicate between 32-bit microprocessor and 8-bit one, I defined SPI protocol frame used in Flash Boot Loader. The CHG pin is used in this update system to inform whether the 8-bit microprocessor complete works such as erase, write, jump to other sections, checksum. Since a copyright of this update system is reserved in a previous company, I can not disclose detailed information or software code.
+**Fig.9)** shows the structure of the entire update system. Through 'Script Tool', several Hex files can be changed  Motorola Hex format to Intel Hex format and be merged one Hex file being used in the update process. The 32-bit microprocessor receives the date of the Hex file from the Diagnostic-CAN, and GateWay module transfroms CAN protocol to SPI protocol format. To communicate between 32-bit microprocessor and 8-bit one, I defined SPI protocol frame used in Flash Boot Loader. The CHG pin is used in this update system in order to inform whether the 8-bit microprocessor complete the works such as erase, write, jump to other sections, checksum.
 
 ### Result #4
 Saved the time and costs spent on the software update from 15 min per one product to 1 min per one product, from $22 per one product to $1.5 per one product respectively.
