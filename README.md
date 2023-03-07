@@ -173,7 +173,7 @@ Built know-how in designing the SPI communication.
 As two microprocessors (32-bit and 8-bit) are applied in our product, I decided to provide the software update function of
 the secondary microprocessor in complete car in order to perform projects efficiently in terms on time and costs.
 
-### Research and Solution #4
+### Approach and Solution #4
 **(Step 1)** Designed the concept of the software update system from an external tool to the target microprocessor<br>
 **(Step 2)** Developed FBL (Flash Boot Loader) of the target microprocessor<br>
 **(Step 3)** Implemented the gateway module (CAN-SPI, CAN-I2C) to transfer binary data from the main microprocessor to the target microprocessor<br>
