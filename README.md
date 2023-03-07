@@ -1,4 +1,4 @@
-# IONIQ HEV/EV(AE PE/ AEEV PE)
+# IONIQ HEV/EV (AE PE/ AEEV PE)
 
 ## 1. Project Overview
 - This project has 2 parts: HVAC controller and 0D & 1D touch system
